@@ -11,6 +11,7 @@ dependencies = [
     "redis==5.0.3",
     "psycopg2-binary==2.9.10",
     "django-environ",
+    "gunicorn==23.0.0",
 ]
 
 [project.optional-dependencies]
