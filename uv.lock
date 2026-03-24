@@ -194,6 +194,11 @@ dev = [
     { name = "ruff" },
 ]
 
+[package.dev-dependencies]
+dev = [
+    { name = "ruff" },
+]
+
 [package.metadata]
 requires-dist = [
     { name = "celery", specifier = "==5.4.0" },
@@ -207,6 +212,9 @@ requires-dist = [
     { name = "ruff", marker = "extra == 'dev'", specifier = "==0.8.4" },
 ]
 provides-extras = ["dev"]
+
+[package.metadata.requires-dev]
+dev = [{ name = "ruff", specifier = ">=0.8.4" }]
 
 [[package]]
 name = "exceptiongroup"
