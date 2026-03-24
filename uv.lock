@@ -187,15 +187,10 @@ dependencies = [
     { name = "psycopg2-binary" },
 ]
 
-[package.optional-dependencies]
+[package.dev-dependencies]
 dev = [
     { name = "pytest" },
     { name = "pytest-django" },
-    { name = "ruff" },
-]
-
-[package.dev-dependencies]
-dev = [
     { name = "ruff" },
 ]
 
@@ -207,14 +202,14 @@ requires-dist = [
     { name = "djangorestframework", specifier = "==3.15.2" },
     { name = "gunicorn", specifier = "==23.0.0" },
     { name = "psycopg2-binary", specifier = "==2.9.10" },
-    { name = "pytest", marker = "extra == 'dev'", specifier = "==8.3.4" },
-    { name = "pytest-django", marker = "extra == 'dev'", specifier = "==4.9.0" },
-    { name = "ruff", marker = "extra == 'dev'", specifier = "==0.8.4" },
 ]
-provides-extras = ["dev"]
 
 [package.metadata.requires-dev]
-dev = [{ name = "ruff", specifier = ">=0.8.4" }]
+dev = [
+    { name = "pytest", specifier = ">=8.3.4" },
+    { name = "pytest-django", specifier = ">=4.9.0" },
+    { name = "ruff", specifier = ">=0.8.4" },
+]
 
 [[package]]
 name = "exceptiongroup"
