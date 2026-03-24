@@ -11,4 +11,4 @@ uv run gunicorn -b 0.0.0.0:8000 \
     --threads=8 \
     --worker-class=gthread \
     --timeout 120 \
-    src.wsgi:application
+    src.core.wsgi:application
