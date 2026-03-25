@@ -29,3 +29,6 @@ Thumbs.
 
 # kube
 .kube/
+
+# ruff
+.ruff_cache/
