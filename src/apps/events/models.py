@@ -60,3 +60,12 @@ class Registration(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} – {self.event.name} ({self.seat})"
+
+
+class SyncState(models.Model):
+    name = models.CharField(max_length=100, unique=True, default='last_sync')
+    last_sync = models.DateTimeField(null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
