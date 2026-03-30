@@ -1,11 +1,12 @@
 import logging
+
 from celery import shared_task
+from django.conf import settings
 from django.utils import timezone
 
 from src.apps.events.models import Event, Place, SyncState
-from src.apps.events.services.events_provider_client import EventsProviderClient
 from src.apps.events.paginator import EventsPaginator
-from django.conf import settings
+from src.apps.events.services.events_provider_client import EventsProviderClient
 
 logger = logging.getLogger(__name__)
 
