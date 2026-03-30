@@ -26,3 +26,15 @@ class EventSerializer(serializers.ModelSerializer):
             "status_changed_at",
         ]
         read_only_fields = fields
+
+
+class RegisterSerializer(serializers.Serializer):
+    first_name = serializers.CharField(max_length=100)
+    last_name = serializers.CharField(max_length=100)
+    email = serializers.EmailField()
+    seat = serializers.CharField(max_length=10)
+
+
+class UnregisterSerializer(serializers.Serializer):
+    ticket_id = serializers.UUIDField()
+    
