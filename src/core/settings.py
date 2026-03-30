@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 import os
+import re
 from pathlib import Path
 
 import environ
@@ -135,10 +136,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Celery
-CELERY_BROKER_URL = env('DATABASE_URL')  # Используем PostgreSQL как брокер
+DATABASE_URL = env('DATABASE_URL')
+
+# используем SQLAlchemy-транспорт
+CELERY_BROKER_URL = re.sub(r'^postgres://', 'sqla+postgresql://', DATABASE_URL)
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
+
+
+EVENTS_PROVIDER_URL = env('EVENTS_PROVIDER_URL', default='http://events-provider.dev-2.python-labs.ru')
+EVENTS_PROVIDER_API_KEY = env('EVENTS_PROVIDER_API_KEY')
