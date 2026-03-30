@@ -9,6 +9,7 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
     ViewSet для чтения событий.
     Доступны методы: list (GET /api/events/) и retrieve (GET /api/events/{id}/).
     """
-    queryset = Event.objects.select_related('place').all()
+
+    queryset = Event.objects.select_related("place").all()
     serializer_class = EventSerializer
-    permission_classes = [AllowAny]  
+    permission_classes = [AllowAny]

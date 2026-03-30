@@ -63,7 +63,7 @@ class Registration(models.Model):
 
 
 class SyncState(models.Model):
-    name = models.CharField(max_length=100, unique=True, default='last_sync')
+    name = models.CharField(max_length=100, unique=True, default="last_sync")
     last_sync = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
 

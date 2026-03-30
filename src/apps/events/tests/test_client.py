@@ -109,4 +109,3 @@ class TestEventsProviderClient:
             json={"ticket_id": "ticket-456"},
         )
         assert result == {"success": True}
-        

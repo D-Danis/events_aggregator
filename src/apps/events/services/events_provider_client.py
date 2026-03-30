@@ -10,7 +10,7 @@ class EventsProviderClient:
     """Клиент для взаимодействия с Events Provider API."""
 
     def __init__(self, base_url: str, api_key: str, timeout: float = 30.0):
-        self.base_url = base_url.rstrip('/')
+        self.base_url = base_url.rstrip("/")
         self.api_key = api_key
         self.client = httpx.Client(timeout=timeout, trust_env=False)
 
@@ -22,16 +22,25 @@ class EventsProviderClient:
         url = f"{self.base_url}{path}"
         headers = self._headers()
 
-        logger.debug("Sending %s request to %s with params %s, json %s",
-                     method, url, kwargs.get('params'), kwargs.get('json'))
+        logger.debug(
+            "Sending %s request to %s with params %s, json %s",
+            method,
+            url,
+            kwargs.get("params"),
+            kwargs.get("json"),
+        )
 
         try:
             response = self.client.request(method, url, headers=headers, **kwargs)
             response.raise_for_status()
-            logger.debug("Response status: %s, body: %s", response.status_code, response.text)
+            logger.debug(
+                "Response status: %s, body: %s", response.status_code, response.text
+            )
             return response.json()
         except httpx.HTTPStatusError as e:
-            logger.error("HTTP error %s for %s: %s", e.response.status_code, url, e.response.text)
+            logger.error(
+                "HTTP error %s for %s: %s", e.response.status_code, url, e.response.text
+            )
             raise
         except httpx.RequestError as e:
             logger.error("Request error for %s: %s", url, e)
@@ -48,8 +57,9 @@ class EventsProviderClient:
         """Получить список свободных мест для события."""
         return self._request("GET", f"/api/events/{event_id}/seats/")
 
-    def register(self, event_id: str, first_name: str, last_name: str,
-                 email: str, seat: str) -> dict[str, Any]:
+    def register(
+        self, event_id: str, first_name: str, last_name: str, email: str, seat: str
+    ) -> dict[str, Any]:
         """Зарегистрировать участника на событие."""
         data = {
             "first_name": first_name,

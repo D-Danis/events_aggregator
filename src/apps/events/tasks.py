@@ -17,9 +17,9 @@ def sync_events_task():
     logger.info("Starting events synchronization")
 
     # Получаем дату последней синхронизации
-    sync_state, _ = SyncState.objects.get_or_create(name='last_sync')
+    sync_state, _ = SyncState.objects.get_or_create(name="last_sync")
     last_sync = sync_state.last_sync
-    changed_at = last_sync.strftime('%Y-%m-%d') if last_sync else '2026-01-01'
+    changed_at = last_sync.strftime("%Y-%m-%d") if last_sync else "2026-01-01"
 
     # Создаём клиент
     client = EventsProviderClient(
@@ -31,33 +31,33 @@ def sync_events_task():
     saved_count = 0
     for event_data in paginator:
         # Сохраняем или обновляем площадку
-        place_data = event_data.pop('place')
+        place_data = event_data.pop("place")
         place, _ = Place.objects.update_or_create(
-            id=place_data['id'],
+            id=place_data["id"],
             defaults={
-                'name': place_data['name'],
-                'city': place_data['city'],
-                'address': place_data['address'],
-                'seats_pattern': place_data['seats_pattern'],
-                'changed_at': place_data['changed_at'],
-                'created_at': place_data['created_at'],
-            }
+                "name": place_data["name"],
+                "city": place_data["city"],
+                "address": place_data["address"],
+                "seats_pattern": place_data["seats_pattern"],
+                "changed_at": place_data["changed_at"],
+                "created_at": place_data["created_at"],
+            },
         )
 
         # Сохраняем или обновляем событие
         Event.objects.update_or_create(
-            id=event_data['id'],
+            id=event_data["id"],
             defaults={
-                'name': event_data['name'],
-                'place': place,
-                'event_time': event_data['event_time'],
-                'registration_deadline': event_data['registration_deadline'],
-                'status': event_data['status'],
-                'number_of_visitors': event_data.get('number_of_visitors', 0),
-                'changed_at': event_data['changed_at'],
-                'created_at': event_data['created_at'],
-                'status_changed_at': event_data['status_changed_at'],
-            }
+                "name": event_data["name"],
+                "place": place,
+                "event_time": event_data["event_time"],
+                "registration_deadline": event_data["registration_deadline"],
+                "status": event_data["status"],
+                "number_of_visitors": event_data.get("number_of_visitors", 0),
+                "changed_at": event_data["changed_at"],
+                "created_at": event_data["created_at"],
+                "status_changed_at": event_data["status_changed_at"],
+            },
         )
         saved_count += 1
 

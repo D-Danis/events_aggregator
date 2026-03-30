@@ -5,7 +5,7 @@ from .models import Event, Place
 class PlaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Place
-        fields = ['id', 'name', 'city', 'address', 'seats_pattern']
+        fields = ["id", "name", "city", "address", "seats_pattern"]
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -14,8 +14,15 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = [
-            'id', 'name', 'place', 'event_time', 'registration_deadline',
-            'status', 'number_of_visitors', 'changed_at', 'created_at',
-            'status_changed_at'
+            "id",
+            "name",
+            "place",
+            "event_time",
+            "registration_deadline",
+            "status",
+            "number_of_visitors",
+            "changed_at",
+            "created_at",
+            "status_changed_at",
         ]
-        read_only_fields = fields  
+        read_only_fields = fields
