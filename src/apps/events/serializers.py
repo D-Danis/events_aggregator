@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from .models import Event, Place
 
 
@@ -37,4 +38,3 @@ class RegisterSerializer(serializers.Serializer):
 
 class UnregisterSerializer(serializers.Serializer):
     ticket_id = serializers.UUIDField()
-    
