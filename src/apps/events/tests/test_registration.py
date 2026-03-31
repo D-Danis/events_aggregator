@@ -76,14 +76,7 @@ def test_register_for_event_seat_not_available(event):
 @pytest.mark.django_db
 def test_unregister_event_success(event):
     ticket_uuid = uuid.uuid4()
-    registration = Registration.objects.create(
-        ticket_id=ticket_uuid,
-        event=event,
-        seat="A1",
-        first_name="John",
-        last_name="Doe",
-        email="john@example.com",
-    )
+
     with patch(
         "src.apps.events.registration.EventsProviderClient"
     ) as mock_client_class:
