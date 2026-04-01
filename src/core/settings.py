@@ -136,7 +136,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Celery
-DATABASE_URL = env("DATABASE_URL")
+DATABASE_URL = env("POSTGRES_CONNECTION_STRING")
 
 # используем SQLAlchemy-транспорт
 CELERY_BROKER_URL = re.sub(r"^postgres://", "sqla+postgresql://", DATABASE_URL)
