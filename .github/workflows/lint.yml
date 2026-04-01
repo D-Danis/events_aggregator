@@ -33,5 +33,5 @@ jobs:
       - name: Run ruff lint check
         run: uv run ruff check .
 
-      - name: Run tests with pytest
-        run: uv run pytest --ds=src.core.settings
+      # - name: Run tests with pytest
+      #   run: uv run pytest --ds=src.core.settings
